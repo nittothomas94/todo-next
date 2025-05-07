@@ -17,19 +17,20 @@ const Home = () => {
     setDirectorValue(e.target.value);
   };
 
+  // console.log(directorValue);
+
   const handleChangeMovie = e => {
     setMovieValue(e.target.value);
   };
 
   const handleAddClick = () => {
-    if (!directorValue || !movieValue) return; // Optional: prevent empty values
-
     setData([...data, { director: directorValue, movie: movieValue }]);
     setDirectorValue('');
     setMovieValue('');
   };
 
-  console.log(data);
+  // console.log(data);
+
   const handleRemoveRow = index => {
     const newData = data.filter((_, i) => i !== index);
     setData(newData);
@@ -41,6 +42,8 @@ const Home = () => {
         <h1 className="text-[40px] font-bold w-full text-center">
           Director And Movies
         </h1>
+
+        {/* Headings */}
         <div className="flex gap-5 w-[95%]">
           <Input
             className="bg-gray-200 w-full h-12 px-5"
@@ -62,6 +65,8 @@ const Home = () => {
             text="add"
           />
         </div>
+
+        {/* body part */}
 
         <div className="flex flex-col gap-5 w-[95%] border border-gray-100 min-h-100">
           {data.map((item, index) => (
