@@ -44,7 +44,7 @@ const Home = () => {
 
           <input
             className="bg-gray-400 w-full h-10"
-            placeholder="Director Name"
+            placeholder="Movie Name"
             onChange={e => handleChangeMovie(e)}
           />
 
