@@ -36,13 +36,13 @@ const Home = () => {
           Director And Movies
         </h1>
         <div className="flex gap-5 w-[95%]">
-          <input
+          <Input
             className="bg-gray-200 w-full h-12 px-5"
             placeholder="Director Name"
             onChange={e => handleChangeDirector(e)}
           />
 
-          <input
+          <Input
             className="bg-gray-200 px-5 w-full h-12"
             placeholder="Movie Name"
             onChange={e => handleChangeMovie(e)}
