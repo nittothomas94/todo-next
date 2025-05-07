@@ -7,23 +7,29 @@ import { useState } from 'react';
 const Home = () => {
   const [director, setDirector] = useState([]);
   const [movie, setMovies] = useState([]);
-
+  const [directorValue, setDirectorValue] = useState('');
+  const [movieValue, setMovieValue] = useState('');
   const [data, setData] = useState([]);
 
   let directorData, movieData;
 
   const handleChangeDirector = e => {
-    directorData = e.target.value;
+    setDirectorValue(e.target.value);
   };
 
   const handleChangeMovie = e => {
-    movieData = e.target.value;
+    setMovieValue(e.target.value);
   };
 
   const handleAddClick = () => {
-    setData([...data, { director: directorData, movie: movieData }]);
+    if (!directorValue || !movieValue) return; // Optional: prevent empty values
+
+    setData([...data, { director: directorValue, movie: movieValue }]);
+    setDirectorValue('');
+    setMovieValue('');
   };
 
+  console.log(data);
   const handleRemoveRow = index => {
     const newData = data.filter((_, i) => i !== index);
     setData(newData);
@@ -40,12 +46,14 @@ const Home = () => {
             className="bg-gray-200 w-full h-12 px-5"
             placeholder="Director Name"
             onChange={e => handleChangeDirector(e)}
+            value={directorValue}
           />
 
           <Input
             className="bg-gray-200 px-5 w-full h-12"
             placeholder="Movie Name"
             onChange={e => handleChangeMovie(e)}
+            value={movieValue}
           />
 
           <Button
