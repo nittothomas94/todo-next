@@ -37,20 +37,20 @@ const Home = () => {
         </h1>
         <div className="flex gap-5 w-[95%]">
           <input
-            className="bg-gray-400 w-full h-10"
+            className="bg-gray-200 w-full h-12 px-5"
             placeholder="Director Name"
             onChange={e => handleChangeDirector(e)}
           />
 
           <input
-            className="bg-gray-400 w-full h-10"
+            className="bg-gray-200 px-5 w-full h-12"
             placeholder="Movie Name"
             onChange={e => handleChangeMovie(e)}
           />
 
           <Button
             onClick={handleAddClick}
-            className="bg-red-600 w-[15%]"
+            className="bg-red-600 w-[15%] cursor-pointer hover:bg-red-800 rounded-[5px] hover:text-white active:scale-95"
             text="add"
           />
         </div>
@@ -58,14 +58,17 @@ const Home = () => {
         <div className="flex flex-col gap-5 w-[95%] border border-gray-100 min-h-100">
           {data.map((item, index) => (
             <div key={index} className="flex gap-5 w-full">
-              <p className="w-full border"> {item.director}</p>
-              <p className="w-full border">{item.movie}</p>
-              <button
+              <p className="w-full h-10 border border-gray-200 px-5 py-3 flex items-center">
+                {item.director}
+              </p>
+              <p className="px-5 w-full h-10 border border-gray-200 py-3 flex items-center">
+                {item.movie}
+              </p>
+              <Button
                 onClick={() => handleRemoveRow(index)}
-                className="bg-red-500 text-white px-2 py-1 rounded"
-              >
-                Remove
-              </button>
+                className="bg-green-500 text-white px-2 py-1 rounded-[5px] cursor-pointer hover:bg-green-800  hover:text-white active:scale-95"
+                text="Remove"
+              />
             </div>
           ))}
         </div>
