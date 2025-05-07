@@ -73,6 +73,7 @@ const Home = () => {
               })}
             </div>
           </div>
+          {/*  */}
 
           {/* buttons */}
           <div className="flex flex-col gap-2 border w-[10%]">
