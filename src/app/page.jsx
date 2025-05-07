@@ -8,6 +8,8 @@ const Home = () => {
   const [director, setDirector] = useState([]);
   const [movie, setMovies] = useState([]);
 
+  const [data, setData] = useState([]);
+
   let directorData, movieData;
 
   const handleChangeDirector = e => {
@@ -19,15 +21,12 @@ const Home = () => {
   };
 
   const handleAddClick = () => {
-    setDirector([...director, directorData]);
-    console.log('hello');
-    setMovies([...movie, movieData]);
-    console.log('hi');
+    setData([...data, { director: directorData, movie: movieData }]);
   };
 
-  const handleRemoveClick = () => {
-    setDirector([]);
-    setMovies([]);
+  const handleRemoveRow = index => {
+    const newData = data.filter((_, i) => i !== index);
+    setData(newData);
   };
 
   return (
@@ -37,57 +36,38 @@ const Home = () => {
           Director And Movies
         </h1>
         <div className="flex gap-5 w-[95%]">
-          {/* first */}
-          <div className="w-[44%] min-h-150 border border-gray-100 flex flex-col gap-5">
-            <input
-              className="bg-gray-400 w-full h-10"
-              placeholder="Director Name"
-              onChange={e => handleChangeDirector(e)}
-            />
+          <input
+            className="bg-gray-400 w-full h-10"
+            placeholder="Director Name"
+            onChange={e => handleChangeDirector(e)}
+          />
 
-            <div className="flex flex-col gap-2">
-              {director.map((item, index) => {
-                return (
-                  <div className="w-full h-10 border">
-                    <p>{item}</p>
-                  </div>
-                );
-              })}
+          <input
+            className="bg-gray-400 w-full h-10"
+            placeholder="Director Name"
+            onChange={e => handleChangeMovie(e)}
+          />
+
+          <Button
+            onClick={handleAddClick}
+            className="bg-red-600 w-[15%]"
+            text="add"
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 w-[95%] border border-gray-100 min-h-100">
+          {data.map((item, index) => (
+            <div key={index} className="flex gap-5 w-full">
+              <p className="w-full border"> {item.director}</p>
+              <p className="w-full border">{item.movie}</p>
+              <button
+                onClick={() => handleRemoveRow(index)}
+                className="bg-red-500 text-white px-2 py-1 rounded"
+              >
+                Remove
+              </button>
             </div>
-          </div>
-          {/*  */}
-          <div className="w-[44%] min-h-150 border border-gray-100 flex flex-col gap-5">
-            <input
-              className="bg-gray-400 w-full h-10"
-              placeholder="Director Name"
-              onChange={e => handleChangeMovie(e)}
-            />
-
-            <div className="flex flex-col gap-2">
-              {movie.map((item, index) => {
-                return (
-                  <div className="w-full h-10 border" key={index}>
-                    <p>{item}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          {/*  */}
-
-          {/* buttons */}
-          <div className="flex flex-col gap-2 border w-[10%]">
-            <Button
-              className="w-fit py-1 rounded-[5px] px-10 bg-red-500"
-              text="Add"
-              onClick={handleAddClick}
-            />
-            <Button
-              className="w-fit py-1 px-6 rounded-[5px] bg-green-500"
-              text="Remove"
-              onClick={handleRemoveClick}
-            />
-          </div>
+          ))}
         </div>
       </div>
     </main>
